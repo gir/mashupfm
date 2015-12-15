@@ -9,4 +9,5 @@ module.exports = Reflux.createActions([
   'refreshPlaylist',
   'setDJ',
   'queueChanged',
+  'mute',
 ])

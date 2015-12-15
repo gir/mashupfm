@@ -5,10 +5,12 @@ import UserStore from '../stores/UserStore.js'
 import Avatar from '../User/Avatar'
 var websocket = require('../websocket')
 var userAuth = require('../userAuth')
-
+import volume from '../AudioPlayer/VolumeControl'
+import RefluxActions from '../RefluxActions'
 
 const RETURN_KEYCODE = 13
 const TAB_KEYCODE = 9
+const SPACE_KEYCODE = 32
 
 export default class ChatInput extends React.Component {
     constructor() {
@@ -57,6 +59,13 @@ export default class ChatInput extends React.Component {
           }
           this.refs.input.value = currentMessage.join(' ')
         })
+      }
+      if (event.keyCode === SPACE_KEYCODE) {
+        if (this.refs.input.value.length === 0) {
+          event.preventDefault()
+          RefluxActions.mute()
+        }
+        return;
       }
     }
 
